@@ -1,3 +1,36 @@
 \section{Introduction}
 
-\cite{Pflger2010SpatiallyAS}
+Ever increasing internet speed and data production and collection come with some new challenges to computational science.
+Beside the classical high dimensional problem like finance, some new player are also jumped to the train like machine learning with an immense amount of dimension.
+High dimensional problems are suffer from curse of dimensionality, i.e.\ they have an exponential dependency on dimension. This is a barrier in numerical treatment of the high-dimensonal problems.
+This exponential dependency makes harder to use classical mesh based approaches to solve this kind of problems. One could also use mesh-free methods like Monte-Carlo quadratures.
+
+In order to overcome such a problem, the sparse grid method gains more and more popularity.
+The sparse grid method is a general numerical discretization technique which is first introduced by  the Russian mathematician Smolyak in 1963~\cite{smolyak1963quadrature}.
+
+Sparse grids offers a new way to reduce the required number of grid points by the order of magnitude \(O(2^{nd})\) to just only \(O(2^n n^{d-1})\) while preseving a similar error as using the full grid.
+In order to achieve these bounds, the mixed second derivatives have to be bounded \todok{Find reference for this.}. For the problems which are do not satisfy smoothness criteria or required further reduce in meshs size, one can use advantage of adaptivity.
+The hierarchical basis is a direct indicator of areas where further refinement required.
+
+\todok{Sparse grids are based on a hierarchical (and thus inherently incremental and adaptive)
+    formulation of the one-dimensional basis which is then extended to the d-dimensional
+    setting via a tensor product approach.}
+
+\missingfigure{Add comparision of nodal basis vs hierarchical basis}
+
+\subsection{Comparision to Full Grids}
+
+\begin{table}
+    \centering
+    \begin{tabular}{l c c}
+        \multicolumn{1}{c}{} & Storage Requirement  & \multicolumn{1}{c}{L2 Norm of Interpolation Error} \\
+        \toprule
+        Full Grid            & \(O(2^{nd})\)        & \(O(2^{-2n})\)                                     \\
+        \midrule
+        Sparse Grid          & \(O(2^{n} n^{d-1})\) & \(O(2^{-2n} n^{d-1})\)                             \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\missingfigure{Show full grid vs Hierarchy in 1D}
+

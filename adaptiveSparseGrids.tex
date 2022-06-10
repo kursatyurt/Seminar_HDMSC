@@ -9,6 +9,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
 %% This LaTeX template is based on the following example file included in the ieeetran
 %% package:
 %% bare_conf.tex 
@@ -252,7 +253,9 @@
 
 %\usepackage{ngerman}
 \usepackage[utf8]{inputenc}  
-
+\usepackage{tikz, pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{booktabs}
 
 
 
@@ -272,6 +275,9 @@
 % 	Begin of the document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\setlength {\marginparwidth}{5cm}
+\usepackage{todonotes}
+\newcommand{\todok}[1]{\todo[color=red!50, linecolor=black!50!red, inline]{#1}}
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -326,9 +332,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{keywords}
-
+    Sparse Grid,Interpolation,Multivariate,\\
+    Multidimension,Adaptivity
 \end{keywords}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 	Sections, Subsections,...
@@ -388,5 +394,4 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
-
 
