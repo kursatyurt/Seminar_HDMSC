@@ -2,7 +2,14 @@
 
 A regular sparse grid is constructed in a way that takes a cut in diagonal hyperplane, which means
 it treats all the dimensions equally. However, there can be an importance difference between the dimensions,
-i.e. one dimension might be more important than others. This can be solved by so called dimensional adaptivity.
+i.e.~one dimension might be more important than others. This can be solved by so called dimensional adaptivity~\cite{Gerstner2003}.
+
+\begin{figure}[bhpt]
+    \centering
+    \includegraphics[keepaspectratio,height=3cm,width=0.45\textwidth]{surplus_interpolation.pdf}
+    \caption{Interpolation of a par abola using 2 level hierarchical basis and surpluses, surpluses are shown in red lines.}
+    \label{fig:interpolation_surplus}
+\end{figure}
 
 The most straightforward approach for this type of refinement is adding some
 new subspaces in the dimension which function changes rapidly. In order to add a new subspace
@@ -10,41 +17,46 @@ new subspaces in the dimension which function changes rapidly. In order to add a
 This refiment treads all the grid points in one dimension as a uniform way,and called as
 dimensionally adaptive refinement. Leads more point in one dimension than other one.
 
-\todok{May be add an example of dimensionally adaptive sparse grid to here.}
-
 Morever, there are some cases exist, where dimensional adaptivity is not to be enough to solve problem.
 For instance take a function that is mostly flat, have peaks at certain regions in the domain.
-Franke's function is a good example for this~\cite{Franke1979}.
+Franke's function \cref{eqn:franke} is a good example for this~\cite{Franke1979}, which will be used in \cref{sec:example}.
 
 \begin{equation}
     \begin{aligned}
-        f(\textbf{x}) & = \frac{3}{4} \exp \left( - \frac{(9x_1-2)^2}{4} - \frac{(9x_2-2)^2}{4} \right) \\
-                      & + \frac{3}{4} \exp  \left( - \frac{(9x_1+1)}{49} - \frac{9x_2+1}{10}\right)     \\
-                      & + \frac{1}{2} \exp \left( -\frac{(9x_1-7)^2}{4} - \frac{(9x_2-3)^2}{4} \right)  \\
-                      & - \frac{1}{5} \exp \left( - (9x_1-4 )^2 -(9x_2-7)\right)
+        f(x_1,x_2) & = \frac{3}{4} \exp \left( - \frac{(9x_1-2)^2}{4} - \frac{(9x_2-2)^2}{4} \right) \\
+                   & + \frac{3}{4} \exp  \left( - \frac{(9x_1+1)}{49} - \frac{9x_2+1}{10}\right)     \\
+                   & + \frac{1}{2} \exp \left( -\frac{(9x_1-7)^2}{4} - \frac{(9x_2-3)^2}{4} \right)  \\
+                   & - \frac{1}{5} \exp \left( - (9x_1-4 )^2 -(9x_2-7)\right)
     \end{aligned}
+    \label{eqn:franke}
 \end{equation}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures/franke.pdf}
-    \caption{Surface plot of Franke's Function.}
-    \label{fig:franke}
-\end{figure}
-
 A dimensionally adaptive grid would also add more point to regions where the function is mostly flat.
-A spatially adaptive grid would overcome this problem. Instead of adding whole incremental grids,
+A spatially adaptive grid~\cite{pflueger10spatially} would overcome this problem. Instead of adding whole incremental grids,
 spatial adaption would only include a subset of those points near the region of interest and saves points.
 
 The general approach for spatially adaptive grids is doing the refinement process iteratively.
 One could start and initial coarse grid or if knows a grid which is tailored to problem. Using an iterative process
 one could simply adds new points (neighboring grid point in the next higher level) to region of interest. To enable usage
 of sparse grids algorithms there is also a consistency constraint exist, the grid should contain all the hierarchical
-ancestors of all grid points. Figure~\ref{fig:spatialrefiment} shows how this process is done in two-dimensional regular sparse grid.
+ancestors of all grid points. This may lead, the number of point which are added might be larger than \( 2 \cdot d \) \Cref{fig:spatialrefiment} shows how this process is done in two-dimensional regular sparse grid for one refinement step.
 
-\begin{figure}
+\begin{figure}[hbtp]
     \centering
-    \missingfigure{Add refiment figure here.}
-    \caption{Spatial refinement of a selected node in two dimension.}
+    \begin{subfigure}{0.22\textwidth}
+        \includegraphics[width=\textwidth]{before_refinement.pdf}
+        \caption{Regular grid.}
+        \label{fig:regularlevel3}
+    \end{subfigure}%
+    \begin{subfigure}{0.22\textwidth}
+        \includegraphics[width=\textwidth]{refinement_0.pdf}
+        \caption{The refined grid.}
+    \end{subfigure}
+    \caption{Spatial refinement of a regular level 3 grid. Refinement point is marked with red.}
     \label{fig:spatialrefiment}
 \end{figure}
+
+The choice of adaptivity criteria to choose the grid points which
+will be refined is defined by user. One of the most popular criterion is the surplus-based criterion,
+which used in example section in this paper. This criterion uses absolute value of the hierarchical surpluses.
+It based on the assumption that a larger absolute surplus corresponds a larger second derivatives.
