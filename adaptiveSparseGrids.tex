@@ -37,7 +37,7 @@
 % manually specify the path to it:
 % \documentclass[conference]{../sty/IEEEtran} 
 
-\IEEEoverridecommandlockouts
+\IEEEoverridecommandlockouts{}
 
 % some very useful LaTeX packages include:
 
@@ -69,7 +69,7 @@
                         % which can be found as esplatex.ps and epslatex.pdf
                         % at: http://www.ctan.org/tex-archive/info/
 % NOTE: for dual use with latex and pdflatex, instead load graphicx like:
-\ifx\pdfoutput\undefined
+\ifx\pdfoutput\undefined{}
 	\usepackage{graphicx}
 \else
 	\usepackage[pdftex]{graphicx}
@@ -254,9 +254,19 @@
 %\usepackage{ngerman}
 \usepackage[utf8]{inputenc}  
 \usepackage{tikz, pgfplots}
+\usepackage{amsfonts}
 \pgfplotsset{compat=1.18}
+\usepackage{pgfplots}
+\DeclareUnicodeCharacter{2212}{−}
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{patterns,shapes.arrows}
+\pgfplotsset{compat=newest}
 \usepackage{booktabs}
-
+\usepackage{url}
+\usepackage{xurl}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{cleveref}
 
 
 
@@ -275,7 +285,7 @@
 % 	Begin of the document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setlength {\marginparwidth}{5cm}
+\setlength{\marginparwidth}{5cm}
 \usepackage{todonotes}
 \newcommand{\todok}[1]{\todo[color=red!50, linecolor=black!50!red, inline]{#1}}
 \begin{document}
@@ -333,7 +343,7 @@
 
 \begin{keywords}
     Sparse Grid,Interpolation,Multivariate,\\
-    Multidimension,Adaptivity
+    Multidimension,Adaptivity,Interpolation
 \end{keywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
