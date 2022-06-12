@@ -1,9 +1,67 @@
 
-\section{Examples}
+\section{Examples}\label{sec:example}
 
-\missingfigure{Before and after refinement grid}
+In this section using SG\textsuperscript{++} software package~\cite{pflueger10spatially},
+interpolation operation on sparse grids are tested for selection functions namely
+Franke's function and Genz test functions.
 
-\missingfigure{L2 error vs Refinement Step}
+\subsection{Franke's Function}\label{subsec:frankeexample}
 
-\missingfigure{Number of points vs Error}
+Franke's function is a well known test function for interpolation.
+It has two Gaussian peaks of different heights, and a smaller dip.
+The function is illustrated in \cref{fig:fullfranke}.
 
+The operation is started with a level 3 regular sparse grid which can be seen
+in \cref{fig:regularlevel3} which has 49 grid points initially. The refinement
+has been done before having approximately 400 grid points, which roughly
+takes 10 refinement step when every step only one grid point is selected
+for refinement. The final refined grid is shown in \cref{fig:frankegrid}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/franke.pdf}
+    \caption{Surface plot of Franke's Function.}
+    \label{fig:fullfranke}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/SurfacePlot.pdf}
+    \caption{Surface plot of Franke's Function.}
+    \label{fig:interpolatedfranke}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/grid_final.pdf}
+    \caption{The final sparse grid with 400 grid points.}
+    \label{fig:frankegrid}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \input{figures/err_franke.pgf}
+    \caption{}
+    \label{fig:frankeerr}
+\end{figure}
+
+\subsection{Genz Test Functions}\label{sec:genzfunc}
+
+A set of test functions are taken from~\cite{Genz1987}.
+
+\begin{equation}
+    f_{disc}(x) = \left\{
+    \begin{array}{ll}
+        0                                             & \text{for} x \ge 0.2 , \\
+        \exp\left(- \sum_{i=1}^{d} i \cdot x_i\right) & \text{otherwise}       \\
+    \end{array}
+    \right.
+\end{equation}
+
+\begin{equation}
+    f_{prod}(x) = \frac{10^{-d}}{\prod_{i=1}^d (10i)^{-2} + \left( x_i -0.99\right)^2}
+\end{equation}
+
+\subsubsection{Discontinuous Function}\label{sec:discontinuous}
+
+\subsubsection{Product Peak Function}\label{sec:productpeak}
