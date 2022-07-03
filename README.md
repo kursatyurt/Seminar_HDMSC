@@ -1,7 +1,7 @@
-# Seminar High Dimensional Methods in Scientific Computing 
+# Seminar High Dimensional Methods in Scientific Computing
 
 ## Adaptive Sparse Grids
- 
+
 In recent years, increasing computational power and usage of high-speed internet
 connections have led to an explosion in the amount of data produced. Generally,
 this kind of data is used in Machine Learning problems or Data Analytics.
