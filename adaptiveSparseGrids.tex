@@ -265,9 +265,9 @@
 \usepackage{url}
 \usepackage{xurl}
 \usepackage{subcaption}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
-
+\usepackage{flushend}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -286,8 +286,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \setlength{\marginparwidth}{5cm}
-\usepackage{todonotes}
-\newcommand{\todok}[1]{\todo[color=red!50, linecolor=black!50!red, inline]{#1}}
+%\usepackage{todonotes}
+%\newcommand{\todok}[1]{\todo[color=red!50, linecolor=black!50!red, inline]{#1}}
+
+
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -343,7 +345,7 @@
 
 \begin{keywords}
     Sparse Grid,Interpolation,Multivariate,\\
-    Multidimension,Adaptivity,Interpolation
+    Multidimension, Adaptivity, Interpolation, Spatially Adaptive Sparse Grids, Spatial Adaptation
 \end{keywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,12 +354,13 @@
 
 \input{introduction}
 
+\input{sparsegrids}
+
 \input{adaptivity}
 
 \input{examples}
 
 \input{conclusion}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 	Acknowledgements
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -386,7 +389,7 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/bibtex
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
-\bibliography{IEEEabrv,references}
+\bibliography{references,IEEEabrv}
 %
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references

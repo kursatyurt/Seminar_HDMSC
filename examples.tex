@@ -5,51 +5,57 @@ In this section using SG\textsuperscript{++} software package~\cite{pflueger10sp
 interpolation operation on sparse grids are tested for selection functions namely
 Franke's function and Genz test functions.
 
+For sake of simplicity and visual inspectation only 2 dimensional cases are considered in this section.
+Thus, a visual inspectation can be done.
+
 \subsection{Franke's Function}\label{subsec:frankeexample}
 
-Franke's function is a well known test function for interpolation.
-It has two Gaussian peaks of different heights, and a smaller dip.
+Franke's function is a well-known test function for interpolation.
+It has two Gaussian peaks of different heights and a smaller dip.
 The function is illustrated in \cref{fig:fullfranke}.
 
-The operation is started with a level 3 regular sparse grid which can be seen
-in \cref{fig:regularlevel3} which has 49 grid points initially. The refinement
-has been done before having approximately 400 grid points, which roughly
-takes 10 refinement step when every step only one grid point is selected
-for refinement. The final refined grid is shown in \cref{fig:frankegrid}.
+The operation is started with a level 3 regular sparse grid, which can be seen
+in \cref{fig:regularlevel3} which has 49 grid points initially.
+The refinement has been done for 10 refinement step and each step ten grid point is refined.
+The final grid have 570 grid points, and shown in \cref{fig:frankegrid}.
 
-\begin{figure}[hbtp]
+\begin{figure}
     \centering
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{franke.pdf}
-        \caption{Regular grid.}
+        \caption{Calculated}
         \label{fig:fullfranke}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
-        \includegraphics[width=\textwidth]{SurfacePlot.pdf}
-        \caption{The refined grid.}
+        \includegraphics[width=\textwidth]{SurfacePlot_franke.pdf}
+        \caption{Interpolated}
         \label{fig:interpolatedfranke}
     \end{subfigure}
-    \caption{Spatial refinement of a regular level 3 grid. Refinement point is marked with red.}
+    \caption{Comparision of calculated and interpolated Franke's function.}
     \label{fig:frankesurfaceplots}
 \end{figure}
 
-\begin{figure}[hbtp]
+\Cref*{fig:frankesurfaceplots} shows surface plots obtained from a 100 by 100 full grid~\cref{fig:fullfranke} and using an adaptive sparse grid with only 570 nodes~\cref{fig:interpolatedfranke}.
+Even with just only 570 grid points the sparse grid resolve whole local properties of function very well both two peaks and the dip. Moreover, \cref{fig:frankeerr} shows that RMS error on the grid, it is in order of \(10^{-6}\).
+\begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{figures/grid_final.pdf}
-    \caption{The final sparse grid with 400 grid points.}
+    \includegraphics[width=0.4\textwidth]{figures/grid_final_franke.pdf}
+    \caption{The final sparse grid with 570 grid points.}
     \label{fig:frankegrid}
 \end{figure}
 
-\begin{figure}[hbtp]
+\begin{figure}
     \centering
-    \input{figures/err_franke.pgf}
+    \scalebox{0.9}{\input{figures/err_franke.pgf}}
     \caption{Error reduction plot of Franke's function w.r.t.\ refinement steps.}
     \label{fig:frankeerr}
 \end{figure}
 
 \subsection{Genz Test Functions}\label{sec:genzfunc}
 
-A set of test functions are taken from~\cite{Genz1987}.
+A set of test functions are taken from Genz~\cite{Genz1987},
+where a discontinuous function has a discontinuity in both dimensions and another function that has a single peak at the product of dimensions
+in our case, it is located at \((1,1)\)
 
 \begin{equation}
     f_{disc}(x) = \left\{
@@ -62,66 +68,85 @@ A set of test functions are taken from~\cite{Genz1987}.
 
 \begin{equation}
     f_{prod}(x) = \frac{10^{-d}}{\prod_{i=1}^d (10i)^{-2} + \left( x_i -0.99\right)^2}
+    \label{eqn:productpeak}
 \end{equation}
 
 \subsubsection{Discontinuous Function}\label{sec:discontinuous}
 
-\begin{figure}[hbtp]
+\begin{figure}
     \centering
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{disco.pdf}
-        \caption{Regular grid.}
-        \label{fig:regularlevel3}
+        \caption{Calculated}
+        \label{fig:discocalculated}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{disco.pdf}
-        \caption{The refined grid.}
+        \caption{Interpolated}
+        \label{fig:discointerpolated}
     \end{subfigure}
-    \caption{Spatial refinement of a regular level 3 grid. Refinement point is marked with red.}
-    \label{fig:peaksurface}
+    \caption{Comparision of calculated and interpolated discontinuous Genz function.}
+    \label{fig:discosurface}
 \end{figure}
 
-\begin{figure}[hbtp]
+In \cref{fig:discosurface} it is clear that like Franke's function, both calcualted~\cref{fig:discocalculated} and
+interpolated surface~\cref{fig:discointerpolated} from sparse grid looks very similar.
+
+Moreover, here at each refinement step, 10 points are refined,
+the effect is clearly visible in RMS error~\cref{fig:discoerr}, the error is almost linearly decreases.
+
+\begin{figure}
     \centering
-    \input{figures/err_disco.pgf}
-    \caption{}
+    \scalebox{0.9}{\input{figures/err_disco.pgf}}
+    \caption{Error reduction plot of discontinuous Genz function w.r.t.\ refinement steps.}
     \label{fig:discoerr}
 \end{figure}
 
-\begin{figure}[htbp]
+\Cref{fig:discogrid} shows the final sparse grid after ten refinement steps. More points are clustered around the intersection of discontinuities in both directions since it is harder to resolve cross derivatives in sparse grids. A good observation here is that the discontinuity is not in a mixed direction sparse grid shows a pretty good performance.
+
+\begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{grid_final_disco.pdf}
-    \caption{}
+    \caption{The final sparse grid of discontinuous Genz function.}
     \label{fig:discogrid}
 \end{figure}
 
 \subsubsection{Product Peak Function}\label{sec:productpeak}
 
-\begin{figure}[hbtp]
+Another test has been done with the product peak function \cref{eqn:productpeak}, where the domain has a peak at corner \((1,1)\).
+
+As in the previous example, ten grid points are refined at each refinement step. \Cref{fig:peaksurface} shows that interpolation using a sparse grid remarkably agrees with the calculated result.
+
+\begin{figure}
     \centering
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{peak_surface.pdf}
-        \caption{Regular grid.}
-        \label{fig:regularlevel3}
+        \caption{Calculated}
+        \label{fig:peakcalculated}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{SurfacePlot_peak.pdf}
-        \caption{The refined grid.}
+        \caption{Interpolated}
+        \label{fig:pekainterpolated}
     \end{subfigure}
-    \caption{Spatial refinement of a regular level 3 grid. Refinement point is marked with red.}
+    \caption{Comparision of calculated and interpolated product peak Genz function.}
     \label{fig:peaksurface}
 \end{figure}
 
-\begin{figure}[hbtp]
+As shown in \cref{fig:peakerr}, the product peak Genz function has a higher error on the regular sparse grid, as a result of high gradient in cross product direction. Adaptation helps to reduce the error in the sparse grid, however 10 refinement step is not enough to reduce error to an acceptable level. The error is still high on the sparse grid.
+
+\begin{figure}
     \centering
-    \input{figures/err_peak.pgf}
-    \caption{}
+    \scalebox{0.9}{\input{figures/err_peak.pgf}}
+    \caption{Error reduction plot of product peak Genz function w.r.t.\ refinement steps.}
     \label{fig:peakerr}
 \end{figure}
 
-\begin{figure}[htbp]
+From \cref{fig:peakgrid}, one can observe that grid points are concentrated around the peak where we have the highest derivatives.
+
+\begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{grid_final_peak.pdf}
-    \caption{}
+    \caption{The final sparse grid of product peak Genz function.}
     \label{fig:peakgrid}
 \end{figure}

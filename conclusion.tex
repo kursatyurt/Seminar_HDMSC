@@ -1,0 +1,14 @@
+\section{Conclusion}\label{sec:conclusion}
+
+In this work, we have shown examples of spatially adaptive sparse grid method for multidimensional interpolation problems that can be used to solve a wide range of problems.
+The main idea is to use a sparse grid to construct a multidimensional basis of functions that can be used to interpolate a function on a given domain and use an adaptive refinement scheme to adapt the grid to the function's
+local behavior.
+
+For demonstrative purposes, we have used free and open-source software SG\textsuperscript{++} to construct the sparse grids and adaptation.
+We have used a surplus-based adaptation strategy to adapt the grid to the function's local behavior.
+
+It has already known that a sparse grid method is a powerful tool for solving multidimensional problems without suffering from the curse of dimensionality.
+It has also been shown that the sparse grid method can be extended by employing the spatial adaptation technique to solve problems efficiently with a wide range of local behavior.
+The strong and weak points of the method are presented in section~\ref{sec:example}. The smoothness of the function affects the interpolated function on the grid drastically. It has shown that discontinuities can be handled using adaptivity. However, higher cross derivatives are not handled well.
+The presented technique can be employed for not only interpolation but also quadrature, regression, classification, and other problems. This enables the use of sparse grids for a wide range of applications.
+

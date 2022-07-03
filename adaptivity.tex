@@ -1,25 +1,19 @@
-\section{Adaptivity}
+\section{Adaptivity}\label{sec:adaptivity}
 
-A regular sparse grid is constructed in a way that takes a cut in diagonal hyperplane, which means
-it treats all the dimensions equally. However, there can be an importance difference between the dimensions,
-i.e.~one dimension might be more important than others. This can be solved by so called dimensional adaptivity~\cite{Gerstner2003}.
+A regular sparse grid is constructed in a way that takes a cut in a diagonal hyperplane, which means
+it treats all the dimensions equally. However, there can be an important difference between the dimensions,
+i.e.~one dimension might be more important than others. This can be solved by so-called dimensional adaptivity~\cite{Gerstner2003}.
 
-\begin{figure}[bhpt]
+\begin{figure}
     \centering
     \includegraphics[keepaspectratio,height=3cm,width=0.45\textwidth]{surplus_interpolation.pdf}
-    \caption{Interpolation of a par abola using 2 level hierarchical basis and surpluses, surpluses are shown in red lines.}
+    \caption{Interpolation of a parabola using 2 level hierarchical basis and surpluses, surpluses are shown in red lines.}
     \label{fig:interpolation_surplus}
 \end{figure}
 
-The most straightforward approach for this type of refinement is adding some
-new subspaces in the dimension which function changes rapidly. In order to add a new subspace
-\(W_{\vec{l}}\) one should include all the backward neighbours in the current set of subspaces.
-This refiment treads all the grid points in one dimension as a uniform way,and called as
-dimensionally adaptive refinement. Leads more point in one dimension than other one.
+The most straightforward approach for this type of refinement is adding some new subspaces in the dimension in which function changes rapidly. In order to add a new subspace \(W_{\vec{l}}\), one should include all the backward neighbors in the current set of subspaces. This refinement treats all the grid points in one dimension uniformly and is called dimensionally adaptive refinement. It leads to more points in one dimension than the other one.
 
-Morever, there are some cases exist, where dimensional adaptivity is not to be enough to solve problem.
-For instance take a function that is mostly flat, have peaks at certain regions in the domain.
-Franke's function \cref{eqn:franke} is a good example for this~\cite{Franke1979}, which will be used in \cref{sec:example}.
+Moreover, some cases exist where dimensional adaptivity is insufficient to solve the problem. For instance, take a primarily flat function with peaks at specific domain regions. Franke's function~\cite{Franke1979} \cref{eqn:franke} is a good example for this, which will be used in \cref{sec:example}.
 
 \begin{equation}
     \begin{aligned}
@@ -31,17 +25,13 @@ Franke's function \cref{eqn:franke} is a good example for this~\cite{Franke1979}
     \label{eqn:franke}
 \end{equation}
 
-A dimensionally adaptive grid would also add more point to regions where the function is mostly flat.
+A dimensionally adaptive grid would also add more points to regions where the function is mostly flat.
 A spatially adaptive grid~\cite{pflueger10spatially} would overcome this problem. Instead of adding whole incremental grids,
 spatial adaption would only include a subset of those points near the region of interest and saves points.
 
-The general approach for spatially adaptive grids is doing the refinement process iteratively.
-One could start and initial coarse grid or if knows a grid which is tailored to problem. Using an iterative process
-one could simply adds new points (neighboring grid point in the next higher level) to region of interest. To enable usage
-of sparse grids algorithms there is also a consistency constraint exist, the grid should contain all the hierarchical
-ancestors of all grid points. This may lead, the number of point which are added might be larger than \( 2 \cdot d \) \Cref{fig:spatialrefiment} shows how this process is done in two-dimensional regular sparse grid for one refinement step.
+The general approach for spatially adaptive grids is doing the refinement process iteratively. One could start an initial coarse grid, or one knows, a grid tailored to the problem. Using an iterative process, one could add new points (neighboring grid points in the next higher level) to the region of interest. A consistency constraint exists to enable the usage of sparse grid algorithms; the grid should contain all the hierarchical ancestors of all grid points. This may lead to the number of points added is larger than \( 2 \cdot d \) \Cref{fig:spatialrefinement} shows how this process is done in the two-dimensional regular sparse grid for one refinement step.
 
-\begin{figure}[hbtp]
+\begin{figure}
     \centering
     \begin{subfigure}{0.22\textwidth}
         \includegraphics[width=\textwidth]{before_refinement.pdf}
@@ -53,10 +43,7 @@ ancestors of all grid points. This may lead, the number of point which are added
         \caption{The refined grid.}
     \end{subfigure}
     \caption{Spatial refinement of a regular level 3 grid. Refinement point is marked with red.}
-    \label{fig:spatialrefiment}
+    \label{fig:spatialrefinement}
 \end{figure}
 
-The choice of adaptivity criteria to choose the grid points which
-will be refined is defined by user. One of the most popular criterion is the surplus-based criterion,
-which used in example section in this paper. This criterion uses absolute value of the hierarchical surpluses.
-It based on the assumption that a larger absolute surplus corresponds a larger second derivatives.
+The choice of adaptivity criteria to choose the grid points which will be refined is defined by the user. One of the most popular criteria is the surplus-based criterion, which is used in the example section in this paper. The surpluses on a parabolic equation are shown in \cref{fig:interpolation_surplus}. One can easily observe that at finer levels, surpluses are getting smaller and reduced to zero, where function has a flat behavior. This criterion uses the absolute value of the hierarchical surpluses. It is based on the assumption that a more significant absolute surplus corresponds to a larger second derivative. The choice of adaptivity criteria to choose the grid points which will be refined is defined by the user. One of the most popular criteria is the surplus-based criterion, which is used in the example section in this paper. This criterion uses the absolute value of the hierarchical surpluses. It is based on the assumption that a more significant absolute surplus corresponds to a larger second derivative.
