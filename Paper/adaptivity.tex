@@ -27,7 +27,7 @@ Moreover, some cases exist where dimensional adaptivity is insufficient to solve
 
 A dimensionally adaptive grid would also add more points to regions where the function is mostly flat.
 A spatially adaptive grid~\cite{pflueger10spatially} would overcome this problem. Instead of adding whole incremental grids,
-spatial adaption would only include a subset of those points near the region of interest and saves points.
+spatial adaptation would only include a subset of those points near the region of interest and saves points.
 
 The general approach for spatially adaptive grids is doing the refinement process iteratively. One could start an initial coarse grid, or one knows, a grid tailored to the problem. Using an iterative process, one could add new points (neighboring grid points in the next higher level) to the region of interest. A consistency constraint exists to enable the usage of sparse grid algorithms; the grid should contain all the hierarchical ancestors of all grid points. This may lead to the number of points added is larger than \( 2 \cdot d \) \Cref{fig:spatialrefinement} shows how this process is done in the two-dimensional regular sparse grid for one refinement step.
 
