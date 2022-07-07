@@ -1,0 +1,31 @@
+% Here the style files are combined
+
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\usefonttheme{ldv}
+\usecolortheme{ldv}
+%\useinnertheme[shadow=false]{rounded}
+\useinnertheme{default}
+\setbeamertemplate{items}[default]
+\setbeamertemplate{section in toc}[square]
+\setbeamertemplate{subsection in toc}[square]
+\setbeamertemplate{itemize item}[square]  
+\setbeamertemplate{itemize subitem}[triangle]
+
+\useoutertheme{ldv}
+
+\setbeamertemplate{navigation symbols}{}
+%\usebackgroundtemplate{
+%	\hbox to \paperwidth{\hfill
+%	\includegraphics[height=\paperheight,keepaspectratio]{images/background.png}
+%	}
+%}
+\AtBeginDocument{\setlength\abovedisplayshortskip{0pt}}
+\AtBeginDocument{\setlength\abovedisplayskip{0pt}}
+\AtBeginDocument{\setlength\belowdisplayshortskip{0pt}}
+\AtBeginDocument{\setlength\belowdisplayskip{0pt}}
+\mode
+<all>

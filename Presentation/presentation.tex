@@ -1,0 +1,83 @@
+\documentclass[xcolor=table,aspectratio=169]{beamer}
+\errorcontextlines 10000
+%\usepackage{polyglossia}
+%\setmainlanguage[latesthyphen=true,spelling=new]{german}
+%\usepackage[ngerman]{babel}
+
+\hypersetup{pdfencoding=auto}
+
+% ...and rename this to "Folie"
+\newcommand{\slidenomenclature}{Page}
+
+\usepackage[autostyle=tryonce]{csquotes}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+
+
+\usepackage[export]{adjustbox}
+\usepackage{tabularx}
+\usepackage{colortbl}
+%\setlength\extrarowheight{3pt}
+\renewcommand{\arraystretch}{1.3}
+
+\usepackage{amsmath}
+\usepackage{bookmark}
+\usepackage{booktabs}
+
+\usepackage{pgfplots} % the package used to implement the graphs  
+\usepgfplotslibrary{polar} % to determine the polar coordinates  
+\usepgflibrary{shapes.geometric}  
+\usetikzlibrary{calc}  
+\pgfplotsset{width = 6.4cm, compat = newest} % it is the width of the graph. The lesser the width, the higher the graph will shrink.  
+\usepackage{sansmath} % it is the package used in math. It provides the math font.  
+\pgfplotsset{  
+% pgfplotsset is used to define the parameters used further to draw a graphs  
+  tick label style = { font=\tiny\sansmath\sffamily}, ,% it defines the font size of the label  
+  label style = { font=\small\sansmath\sffamily}  
+}  
+\usepackage{physics}
+
+\mode<presentation>
+{
+	\usetheme{ldv}
+	% How to hide stuff (dimmed or really hidden)
+%	\setbeamercovered{transparent}
+	\setbeamercovered{invisible}
+}
+
+\title[SCCS Seminar | High Dimensional Methods | Adaptive Sparse Grids]{Adaptive Sparse Grids}
+\subtitle{Seminar: High Dimensional Methods in Scientific Computing}
+\subject{Presentation for my thesis}
+\author{Muhammed K\"{u}r\c{s}at Yurt}
+
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section[]{Introduction}
+\input{introduction}
+
+\section[]{A deeper look to Sparse Grids}
+
+\input{sparsegrid}
+
+\section[]{Adaptivity on Sparse Grids}
+
+\input{adaptivity}
+
+\section[]{Sparse Grid in Action: Interpolation}
+
+\input{examples}
+
+\begin{frame}
+    \centering
+    \LARGE{Thank you for your attention!}
+\end{frame}
+\end{document}

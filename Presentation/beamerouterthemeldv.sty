@@ -1,0 +1,64 @@
+\mode<presentation>
+
+\setbeamercolor{frametitle}{parent=palette primary}
+
+\AtBeginDocument{
+  {
+    \usebeamerfont*{headline}
+
+    \usebeamercolor{normal text}
+    \usebeamercolor{title in head/foot}
+    \usebeamercolor{subsection in head/foot}
+    \usebeamercolor{section in head/foot}
+    \usebeamercolor{frametitle}
+
+    
+    \pgfdeclareverticalshading{beamer@aboveframetitle}{\the\paperwidth}{%
+      color(0ex)=(frametitle.bg);%
+      color(0ex)=(frametitle.bg);%
+      color(0ex)=(subsection in head/foot.bg)
+    }
+
+    \pgfdeclareverticalshading{beamer@belowframetitle}{\the\paperwidth}{%
+      color(0ex)=(normal text.bg);%
+      color(0ex)=(frametitle.bg)
+    }
+  }
+}
+
+\defbeamertemplate*{headline}{ldv}
+{%
+% Box on top of each slide
+%Logo der Uni:
+    \vspace{0.15cm}
+    \begin{tabularx}{\paperwidth}{lXr}
+	%\includegraphics[height=0.60cm]{images/ldvlogo_neu.pdf} & \hspace{-3mm}
+	\begin{minipage}[b]{8cm}
+    	\color{beamer@blendedblue}
+    	Chair of Scientific Computing\\
+    	Department of Informatics\\
+    	Technical University of Munich
+    	\end{minipage} & &
+    \hspace{-3mm}
+	\includegraphics[height=0.60cm]{images/tumlogo.pdf}
+    \end{tabularx}
+    \parbox{\paperwidth}{\vspace{0.7mm}%
+\textcolor{beamer@blendedblue}{\rule{\paperwidth}{0.4pt}}} % Obere (blaue, dünne) Linie
+  }
+
+\defbeamertemplate*{footline}{ldv}
+{
+	\hbox{%
+	\textcolor{beamer@blendedblue}{\rule{\paperwidth}{0.4pt}}} % Untere (blaue, dünne) Linie
+	\renewcommand{\arraystretch}{1.4}
+	\begin{tabularx}{0.75\textwidth}{l !{\color{beamer@blendedblue}\vline} X
+	!{\color{beamer@blendedblue}\vline} c !{\color{beamer@blendedblue}\vline} r}
+		\textcolor{beamer@blendedblue}{\slidenomenclature \ \insertframenumber/\inserttotalframenumber} &
+		\textcolor{beamer@blendedblue}{\insertshorttitle} &
+		\textcolor{beamer@blendedblue}{\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}} &
+		\textcolor{beamer@blendedblue}{\insertshortdate{}}
+    \end{tabularx}
+}
+
+\mode
+<all>
